@@ -1,0 +1,20 @@
+meta {
+  name: NOTE PUT
+  type: http
+  seq: 7
+}
+
+put {
+  url: http://localhost:3000/api/notes/6874d954969a19e79d311938
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "Buy Groceries of All time",
+    "description": "Milk, Eggs, Bread, and Fruits",
+    "userId": "6874d8c8969a19e79d311935"
+  }
+  
+}

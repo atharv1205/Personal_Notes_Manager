@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import routes from "./controller/controller.js";
+import noteRoutes from "./controller/notesController.js";
 dotenv.config();
 
 const app = express();
@@ -15,6 +17,8 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('<h1>Welcome to Backend!</h1>')
 })
+app.use('/api/users', routes);
+app.use('/api/notes', noteRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server Running on PORT : ${PORT}`);
