@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import routes from "./controller/controller.js";
 import noteRoutes from "./controller/notesController.js";
+import cookieParser from "cookie-parser";
 dotenv.config();
 
 const app = express();
@@ -14,6 +15,7 @@ mongoose.connect(URL)
     .catch((err) => console.log(err));
 
 app.use(express.json());
+app.use(cookieParser());
 app.get('/', (req, res) => {
     res.send('<h1>Welcome to Backend!</h1>')
 })
