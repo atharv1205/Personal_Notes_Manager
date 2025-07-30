@@ -1,6 +1,7 @@
 import User from "../model/schema.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { verifyToken } from "../middleware/authMiddleware.js";
 
 export const loginUser = async (req, res) => {
     try {
@@ -14,7 +15,8 @@ export const loginUser = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
         res.cookie("token", token, {
             httpOnly: true,
-            sameSite: "strict",
+            secure: false,
+            sameSite: "Lax",
             secure: process.env.NODE_ENV === "production",
             maxAge: 24 * 60 * 60 * 1000
         });
@@ -22,6 +24,17 @@ export const loginUser = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({ error: "Server error" });
+    }
+};
+
+export const getUserById = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id);
+        if(!user) return res.status(404).json({ error: "User not found!" });
+        return res.json(user);
+    } catch(err){
+        console.log(err);
+        return res.status(500).json({ error: 'Something went Wrong!' });
     }
 };
 
@@ -33,7 +46,7 @@ export const POST = async (req, res) => {
             return res.status(400).json({ error: "User already exists" });
         }
         const hashedPassword = bcrypt.hashSync(password, 10);
-        const newUser = new User({ name, email, password: hashedPassword });
+        const newUser = new User({ name, email, password: hashedPassword, profilePicture: req.file ? `/uploads/${req.file.filename}` : null, });
         await newUser.save();
         return res.status(201).json({ message: "User registered successfully!", user: newUser });
     } catch (err) {
