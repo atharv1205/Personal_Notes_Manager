@@ -1,0 +1,20 @@
+meta {
+  name: NOTE POST
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:3000/api/notes
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "Buy Groceries",
+    "description": "Milk, Eggs, Bread, and Fruits",
+    "userId": "68777e6d8793c495f59cecad"
+  }
+  
+}

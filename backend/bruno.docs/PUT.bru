@@ -1,0 +1,19 @@
+meta {
+  name: PUT
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:3000/api/users/6874c9ccb720c73b7b304b87
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name":"Atharva",
+    "email":"atharva@gmail.com",
+    "password":"Atharva@123"
+  }
+}
