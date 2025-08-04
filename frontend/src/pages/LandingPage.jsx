@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 const LandingPage = () => {
   return (
     <div className="min-h-screen bg-[#f9f9f9] text-gray-900 font-sans antialiased">
-      {/* Header */}
       <header className="flex justify-between items-center px-6 md:px-16 py-5 border-b border-gray-200 bg-white shadow-sm sticky top-0 z-50">
         <div className="text-2xl font-semibold font-serif">NoteNest</div>
         <nav className="hidden md:flex space-x-8 text-sm text-gray-600">
@@ -23,7 +22,6 @@ const LandingPage = () => {
         </button>
       </section>
 
-      {/* Features Section */}
       <section className="bg-white px-6 md:px-24 py-24">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
           {[
@@ -49,7 +47,6 @@ const LandingPage = () => {
       </section>
 
 
-      {/* Footer */}
       <footer className="text-center py-8 text-sm text-gray-500 border-t border-gray-200">
         © {new Date().getFullYear()} NoteNest. Calm productivity redefined.
       </footer>
